@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+    <style>
+        /* Your CSS styles */
+         body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('static/images/bg3.jpg'); /* Add your image URL here */
+            background-size: cover; /* Cover the entire page */
+            background-repeat: no-repeat; /* Prevent image repetition */
+        }
+
+        .welcome-text {
+            text-align: center;
+            margin-bottom: 40px; /* Increased margin */
+        }
+
+        h2 {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 48px; /* Increased font size */
+            color: #940101; /* Reddish color */
+        }
+
+        .container {
+            width: 80%;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.7); /* Light orange with transparency */
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff8c66; /* Peach color */
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            display: flex;
+            gap: 10px;
+        }
+
+        input[type="text"] {
+            width: 400px;
+            padding: 10px;
+            border: 2px solid #ff8c66; /* Peach color */
+            border-radius: 20px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            background-color: #ff8c66; /* Peach color */
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #d34e3b; /* Reddish color */
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        li img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            display: block;
+        }
+
+        li .recipe-details {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-details h2 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .recipe-details p {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .recipe-details a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .recipe-details a:hover {
+            text-decoration: underline;
+        }
+
+        .logout-link {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: black; /* Peach color */
+            font-weight: bold;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+         .add-item-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            padding: 15px 40px;
+            font-size: 1.2em; /* Adjust font size */
+            color: #fff; /* Text color */
+            background-color: #ff8c66; /* Button background color */
+            border: none;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .add-item-link:hover {
+            background-color: #940101; /* Darker background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="welcome-text">
+        <h2>Welcome to Khana Quest</h2>
+    </div>
+    <a href="{{ url_for('logout') }}" class="logout-link">Logout</a>
+    <div class="container">
+        <h1>Search Ingredients</h1>
+        <div class="search-container">
+            <form method="post" action="" class="search-input">
+                <input type="text" name="ingredient" id="ingredient" placeholder="Enter ingredient name" required>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <ul>
+            {% for item in food_items %}
+            <li>
+                <h2>{{ item.name }}</h2>
+                <p>{{ item.description }}</p>
+                <p><a href="{{ url_for('show_recipe', food_item_name=item.name) }}">View Recipe</a></p>
+                <img src="{{ item.image_path }}" alt="{{ item.name }}">
+            </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('add_item') }} " class="add-item-link">Add New Item</a>
+    </div>
+</body>
+</html>

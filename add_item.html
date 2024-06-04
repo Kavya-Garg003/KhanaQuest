@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Item</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #FFF5E1, #FFEBD1); /* Cream color gradient */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 500px; /* Increased maximum width */
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border: 5px double #FFEBD1; /* Creamish double border */
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 1em;
+            color: #666;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        input[type="text"], textarea {
+            width: calc(100% - 20px); /* Smaller width */
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #FF6347; /* Red button */
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #FFEBD1; /* Cream hover effect */
+            color: #333;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            color: #FF6347;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Add New Item</h1>
+        <form method="post" action="" enctype="multipart/form-data" onsubmit="showAlert()">
+            <label for="ingredient">Ingredient:</label>
+            <input type="text" name="ingredient" id="ingredient" required><br><br>
+            <label for="food_item">Food Item:</label>
+            <input type="text" name="food_item" id="food_item" required><br><br>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" rows="4" required></textarea><br><br>
+            <label for="recipe">Recipe:</label>
+            <textarea name="recipe" id="recipe" rows="4" required></textarea><br><br>
+            <label for="image">Image:</label>
+            <input type="file" name="image" id="image" accept="image/*" required><br><br>
+            <button type="submit">Add</button>
+        </form>
+        <a href="{{ url_for('search') }}">Back to Search</a>
+    </div>
+
+    <script>
+        function showAlert() {
+            alert('Item added successfully!');
+        }
+    </script>
+</body>
+</html>
